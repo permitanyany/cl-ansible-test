@@ -1,5 +1,5 @@
 auto lo
 iface lo inet loopback
-  address {{ loopback.ip }}
-  clagd-vxlan-anycast-ip {{ loopback.clag_anycast }}
-  alias {{ loopback.description }}
+  address {{ ["loopback"]["ip"] }}
+  clagd-vxlan-anycast-ip {{ ["loopback"]["clag_anycast"] }}
+  alias loopback interface
