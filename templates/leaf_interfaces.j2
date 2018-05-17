@@ -1,7 +1,7 @@
 auto lo
 iface lo inet loopback
-    address {{ ["loopback"] }}
-    clagd-vxlan-anycast-ip {{ ["loopback"] }}
+    address {{ hostvars["loopback"]["ip"] }}
+    clagd-vxlan-anycast-ip {{ hostvars["loopback"]["clag_anycast"] }}
     alias loopback interface
 
 auto eth0
