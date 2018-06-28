@@ -2,7 +2,6 @@ auto lo
 iface lo inet loopback
   address {{ hostvars[inventory_hostname]["loopback"]["ip"] }}
   clagd-vxlan-anycast-ip {{ hostvars[inventory_hostname]["loopback"]["clag_anycast"] }}
-  alias {{ hostvars[inventory_hostname]["loopback"]["description"] }}
 
 # Port to Server01
 auto swp1
