@@ -4,9 +4,9 @@
   become: yes
   become_method: sudo
 
-tasks:
-  - name: populate interfaces file
-    template: src=leaf_interfaces.j2 dest=/etc/network/interfaces
+  tasks:
+    - name: populate interfaces file
+      template: src=leaf_interfaces.j2 dest=/etc/network/interfaces
 
-  - name: restart networking
-    shell: ifreload -a
+    - name: restart networking
+      shell: ifreload -a
