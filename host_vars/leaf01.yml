@@ -39,16 +39,20 @@ bridge:
 vni13:
   vxlan_id: 13
   vlan_id: 13
+  local_ip: 10.0.0.11
 vni24:
   vxlan_id: 24
   vlan_id: 24
+  local_ip: 10.0.0.11
 vlan13:
   address: 10.1.3.11/24
   vrr: 10.1.3.1/24
+    mac: 44:39:39:ff:00:13
   vlan: 13
 vlan24:
   address: 10.2.4.11/24
   vrr: 10.2.4.1/24
+    mac: 44:39:39:ff:00:24
   vlan: 24
 bgp:
   as: 65011
