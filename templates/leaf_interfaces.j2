@@ -80,6 +80,7 @@ iface bridge
   bridge-ports {{ ports }}
   {% endfor %}
   {% for vids in hostvars[inventory_hostname]["bridge"]["vlans"] %}
+  {% endfor %}
   bridge-vids {{ vids }}
   bridge-pvid 1
 
