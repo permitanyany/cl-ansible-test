@@ -66,7 +66,7 @@ auto bond02
 iface bond02
   mtu 9000
   bond-slaves {{ hostvars[inventory_hostname]["bond02"]["slaves"] }}
-  bridge-access {{ hostvars[inventory_hostname]["bond02"]["address"] }}
+  bridge-access {{ hostvars[inventory_hostname]["bond02"]["access_vlan"] }}
   clag-id {{ hostvars[inventory_hostname]["bond02"]["clag_id"] }}
 
 # Define the bridge for STP
