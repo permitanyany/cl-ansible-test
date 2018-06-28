@@ -79,8 +79,8 @@ iface bridge
   bridge-ports {{ ports }}
   {% endfor %}
   {% for vids in hostvars[inventory_hostname]["bridge"]["vlans"] %}
-  {% endfor %}
   bridge-vids {{ vids }}
+  {% endfor %}
   bridge-pvid 1
 
 # VxLAN Tunnel for Server1-Server3 (Vlan 13)
