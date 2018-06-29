@@ -75,12 +75,12 @@ iface bridge
   bridge-vlan-aware yes
   # bridge-ports includes all ports related to VxLAN and CLAG.
   # does not include the Peerlink.4094 subinterface
-  {% for ports in hostvars[inventory_hostname]["bridge"]["ports"] %}
-  bridge-ports {{ ports }}
-  {% endfor %}
-  {% for vids in hostvars[inventory_hostname]["bridge"]["vlans"] %}
-  bridge-vids {{ vids }}
-  {% endfor %}
+  bridge-ports {%- for ports in hostvars[inventory_hostname]["bridge"]["ports"] %} {{ ports }}
+  {%- endfor %}
+  
+  bridge-vids {%- for vids in hostvars[inventory_hostname]["bridge"]["vlans"] %} {{ vids }}
+  {%- endfor %}
+  
   bridge-pvid 1
 
 # VxLAN Tunnel for Server1-Server3 (Vlan 13)
@@ -89,7 +89,7 @@ iface vni13
   mtu 9000
   vxlan-id {{ hostvars[inventory_hostname]["vni13"]["vxlan_id"] }}
   vxlan-local-tunnelip {{ hostvars[inventory_hostname]["vni13"]["local_ip"] }}
-  bridge-access {{ hostvars[inventory_hostname]["vni13"]["access_vlan"] }}
+  bridge-access {{ hostvars[inventory_hostname]["vni13"]["vlad_id"] }}
   bridge-learning off
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
@@ -102,7 +102,7 @@ iface vni24
   mtu 9000
   vxlan-id {{ hostvars[inventory_hostname]["vni24"]["vxlan_id"] }}
   vxlan-local-tunnelip {{ hostvars[inventory_hostname]["vni24"]["local_ip"] }}
-  bridge-access {{ hostvars[inventory_hostname]["vni24"]["access_vlan"] }}
+  bridge-access {{ hostvars[inventory_hostname]["vni24"]["vlan_id"] }}
   bridge-learning off
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
@@ -111,13 +111,13 @@ iface vni24
 auto vlan13
 iface vlan13
     address {{ hostvars[inventory_hostname]["vlan13"]["address"] }}
-    address-virtual {{ hostvars[inventory_hostname]["vlan13"]["vrr"]['mac'] }} {{ hostvars[inventory_hostname]["vlan13"]["vrr"]['ip'] }}
+    address-virtual {{ hostvars[inventory_hostname]["vlan13"]["vrr"]["mac"] }} {{ hostvars[inventory_hostname]["vlan13"]["vrr"]['ip'] }}
     vlan-id {{ hostvars[inventory_hostname]["vlan13"]["vlan"] }}
     vlan-raw-device bridge
 
 auto vlan24
 iface vlan24
     address {{ hostvars[inventory_hostname]["vlan24"]["address"] }}
-    address-virtual {{ hostvars[inventory_hostname]["vlan24"]["vrr"]['mac'] }} {{ hostvars[inventory_hostname]["vlan24"]["vrr"]['ip'] }}
+    address-virtual {{ hostvars[inventory_hostname]["vlan24"]["vrr"]["mac"] }} {{ hostvars[inventory_hostname]["vlan24"]["vrr"]['ip'] }}
     vlan-id {{ hostvars[inventory_hostname]["vlan24"]["vlan"] }}
     vlan-raw-device bridge
