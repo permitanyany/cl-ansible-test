@@ -89,7 +89,7 @@ iface vni13
   mtu 9000
   vxlan-id {{ hostvars[inventory_hostname]["vni13"]["vxlan_id"] }}
   vxlan-local-tunnelip {{ hostvars[inventory_hostname]["vni13"]["local_ip"] }}
-  bridge-access {{ hostvars[inventory_hostname]["vni13"]["vlad_id"] }}
+  bridge-access {{ hostvars[inventory_hostname]["vni13"]["vlan_id"] }}
   bridge-learning off
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
